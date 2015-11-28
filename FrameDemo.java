@@ -13,12 +13,22 @@ public class FrameDemo {
   static JPanel south = new JPanel();
   JPanel west = new JPanel();
 
+  private static final String key = "ENTER";
+  private static KeyStroke keyStroke;
+
   static JButton sendButton = new JButton("Send");
   static JTextArea messageArea = new JTextArea();
   static JTextArea logWindow = new JTextArea();
   static JScrollPane logWindowScroll = new JScrollPane(logWindow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
       JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
   JTextArea messageField = new JTextArea(140, 2);
+
+  private static Action wrapper = new AbstractAction() {
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+      sendButton.doClick();
+    }
+  };
 
   public static void main(String[] args) {
     createAndShowGUI();
@@ -39,6 +49,7 @@ public class FrameDemo {
     jframe.setResizable(true);
 
     master.setLayout(new BorderLayout());
+    south.setLayout(new BorderLayout());
 
     logWindow.setEditable(false);
     logWindow.setLineWrap(true);
@@ -47,9 +58,13 @@ public class FrameDemo {
 
     messageArea.setLineWrap(true);
     messageArea.setWrapStyleWord(true);
-    south.add(sendButton);
-    south.add(messageArea);
+    south.add(sendButton, BorderLayout.WEST);
+    south.add(messageArea, BorderLayout.CENTER);
     master.add(south, BorderLayout.SOUTH);
+
+    keyStroke = KeyStroke.getKeyStroke(key);
+    Object actionKey = messageArea.getInputMap(JComponent.WHEN_FOCUSED).get(keyStroke);
+    messageArea.getActionMap().put(actionKey, wrapper);
 
     /*
      * ArrayList<String> lofg = logCreator(50); for (String a : lofg) {
@@ -62,13 +77,23 @@ public class FrameDemo {
     jframe.setVisible(true);
   }
 
+  /*
+   * text1.setOnKeyListener(new OnKeyListener() { public boolean onKey(View v,
+   * int keyCode, KeyEvent event){ // If the event is a key-down event on the
+   * "enter" button if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode
+   * == KeyEvent.KEYCODE_ENTER)) { // Perform action on key press
+   * sendButtonAction(); return true; } return false; } });
+   */
+
   public static void windowActions() {
+
     sendButton.addActionListener(new java.awt.event.ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         sendButtonAction();
       }
     });
+
   }
 
   public static void sendButtonAction() {
