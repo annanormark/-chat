@@ -1,7 +1,8 @@
-//package components;
+package components;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.ConnectException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import javax.xml.bind.Marshaller.Listener;
 public class FrameDemo {
 	static JPanel master = new JPanel();
 	static JPanel south = new JPanel();
-	JPanel west = new JPanel();
+	static JPanel southWest = new JPanel();
 
 	private static final String key = "ENTER";
 	private static KeyStroke keyStroke;
@@ -47,20 +48,22 @@ public class FrameDemo {
 
 		master.setLayout(new BorderLayout());
 		south.setLayout(new BorderLayout());
+		southWest.setLayout(new BorderLayout());
 
 		logWindow.setEditable(false);
 		logWindow.setLineWrap(true);
 		logWindow.setWrapStyleWord(true);
 		master.add(logWindowScroll, BorderLayout.CENTER);
-		
+
 		userWindow.setEditable(false);
 		userWindow.setLineWrap(false);
 		master.add(userWindowScroll, BorderLayout.EAST);
 
 		messageArea.setLineWrap(true);
 		messageArea.setWrapStyleWord(true);
-		south.add(sendButton, BorderLayout.WEST);
-		south.add(connectButton, BorderLayout.WEST);
+		south.add(southWest, BorderLayout.WEST);
+		southWest.add(sendButton, BorderLayout.NORTH);
+		southWest.add(connectButton, BorderLayout.SOUTH);
 		south.add(messageArea, BorderLayout.CENTER);
 		master.add(south, BorderLayout.SOUTH);
 
@@ -83,6 +86,24 @@ public class FrameDemo {
 			}
 		});
 
+		connectButton.addActionListener(new java.awt.event.ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				connectButtonAction();
+			}
+
+		});
+
+	}
+
+	public static void connectButtonAction() {
+		if (!messageArea.getText().equals("")) {
+			if (!messageArea.getText().trim().equals("")) {
+				// connection method call
+			}
+			messageArea.setText("");
+		}
 	}
 
 	public static void sendButtonAction() {
