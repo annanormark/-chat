@@ -1,11 +1,9 @@
-package sockettest;
-
 import java.net.*;
 import java.io.*;
 
 public class socket {
-  public static void main(String[] args) {
-    String serverName = "localhost";//args[0];
+  public static void socketConnect(String ip) {
+    String serverName = ip;
     int port = 6066;// Integer.parseInt(args[1]);
     try {
       System.out.println("Connecting to " + serverName + " on port " + port);

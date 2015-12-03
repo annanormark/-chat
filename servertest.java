@@ -1,18 +1,16 @@
-package sockettest;
-
 import java.net.*;
 import java.io.*;
 
 public class servertest extends Thread {
-  public static void main(String[] args) {
-    int port = 6066;// Integer.parseInt(args[0]);
-    try {
-      Thread t = new servertest(port);
-      t.start();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+  // public static void main(String[] args) {
+  //   int port = 6066;// Integer.parseInt(args[0]);
+  //   try {
+  //     Thread t = new servertest(port);
+  //     t.start();
+  //   } catch (IOException e) {
+  //     e.printStackTrace();
+  //   }
+  // }
   
   private ServerSocket serverSocket;
 
@@ -20,7 +18,7 @@ public class servertest extends Thread {
 
   public servertest(int port) throws IOException {
     serverSocket = new ServerSocket(port);
-    serverSocket.setSoTimeout(10000);
+    serverSocket.setSoTimeout(300000);
   }
 
   public void run() {
