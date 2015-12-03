@@ -61,7 +61,7 @@ public class FrameDemo {
 
 		messageArea.setLineWrap(true);
 		messageArea.setWrapStyleWord(true);
-		south.add(southWest, BorderLayout.WEST);
+		south.add(southWest, BorderLayout.EAST);
 		southWest.add(sendButton, BorderLayout.NORTH);
 		southWest.add(connectButton, BorderLayout.SOUTH);
 		south.add(messageArea, BorderLayout.CENTER);
@@ -72,7 +72,7 @@ public class FrameDemo {
 		messageArea.getActionMap().put(actionKey, wrapper);
 
 		jframe.add(master);
-		// jframe.pack();
+		//jframe.pack();
 		windowActions();
 		jframe.setVisible(true);
 	}
@@ -87,7 +87,6 @@ public class FrameDemo {
 		});
 
 		connectButton.addActionListener(new java.awt.event.ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				connectButtonAction();
@@ -101,6 +100,7 @@ public class FrameDemo {
 		if (!messageArea.getText().equals("")) {
 			if (!messageArea.getText().trim().equals("")) {
 				// connection method call
+				userWindow.append("192.168.255.255\n");
 			}
 			messageArea.setText("");
 		}
@@ -109,8 +109,9 @@ public class FrameDemo {
 	public static void sendButtonAction() {
 		if (!messageArea.getText().equals("")) {
 			if (!messageArea.getText().trim().equals("")) {
+				// message sending method call
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd h:mm:ss");
+				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd h:mm:ss.S");
 				String formattedDate = sdf.format(date);
 				logWindow.append(formattedDate + ": " + messageArea.getText().trim() + "\n");
 			}
