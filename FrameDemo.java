@@ -21,6 +21,9 @@ public class FrameDemo {
 	static JTextArea logWindow = new JTextArea();
 	static JScrollPane logWindowScroll = new JScrollPane(logWindow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	static JTextArea userWindow = new JTextArea(logWindow.getHeight(), 10);
+	static JScrollPane userWindowScroll = new JScrollPane(userWindow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	JTextArea messageField = new JTextArea(140, 2);
 
 	private static Action wrapper = new AbstractAction() {
@@ -48,6 +51,10 @@ public class FrameDemo {
 		logWindow.setLineWrap(true);
 		logWindow.setWrapStyleWord(true);
 		master.add(logWindowScroll, BorderLayout.CENTER);
+		
+		userWindow.setEditable(false);
+		userWindow.setLineWrap(false);
+		master.add(userWindowScroll, BorderLayout.EAST);
 
 		messageArea.setLineWrap(true);
 		messageArea.setWrapStyleWord(true);
