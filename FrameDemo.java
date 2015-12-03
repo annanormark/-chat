@@ -33,13 +33,6 @@ public class FrameDemo {
 	public static void main(String[] args) {
 		createAndShowGUI();
 	}
-	/*
-	 * private static ArrayList<String> logCreator(int x) { ArrayList<String>
-	 * log = new ArrayList<String>(); Date date = new Date(); SimpleDateFormat
-	 * sdf = new SimpleDateFormat("MM/dd h:mm:ss"); String formattedDate =
-	 * sdf.format(date); for (int i = 0; i <= x; i++) { log.add(formattedDate +
-	 * ": This is chat message " + i); } return log; }
-	 */
 
 	private static void createAndShowGUI() {
 		JFrame jframe = new JFrame("@Chat");
@@ -66,24 +59,11 @@ public class FrameDemo {
 		Object actionKey = messageArea.getInputMap(JComponent.WHEN_FOCUSED).get(keyStroke);
 		messageArea.getActionMap().put(actionKey, wrapper);
 
-		/*
-		 * ArrayList<String> lofg = logCreator(50); for (String a : lofg) {
-		 * logWindow.append(a + "\n"); }
-		 */
-
 		jframe.add(master);
 		// jframe.pack();
 		windowActions();
 		jframe.setVisible(true);
 	}
-
-	/*
-	 * text1.setOnKeyListener(new OnKeyListener() { public boolean onKey(View v,
-	 * int keyCode, KeyEvent event){ // If the event is a key-down event on the
-	 * "enter" button if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-	 * (keyCode == KeyEvent.KEYCODE_ENTER)) { // Perform action on key press
-	 * sendButtonAction(); return true; } return false; } });
-	 */
 
 	public static void windowActions() {
 
