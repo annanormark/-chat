@@ -1,4 +1,4 @@
-package components;
+//package components;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,6 +17,7 @@ public class FrameDemo {
 	private static KeyStroke keyStroke;
 
 	static JButton sendButton = new JButton("Send");
+	static JButton connectButton = new JButton("Connect");
 	static JTextArea messageArea = new JTextArea();
 	static JTextArea logWindow = new JTextArea();
 	static JScrollPane logWindowScroll = new JScrollPane(logWindow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -59,6 +60,7 @@ public class FrameDemo {
 		messageArea.setLineWrap(true);
 		messageArea.setWrapStyleWord(true);
 		south.add(sendButton, BorderLayout.WEST);
+		south.add(connectButton, BorderLayout.WEST);
 		south.add(messageArea, BorderLayout.CENTER);
 		master.add(south, BorderLayout.SOUTH);
 
