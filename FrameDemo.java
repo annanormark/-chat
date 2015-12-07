@@ -101,6 +101,7 @@ public class FrameDemo {
 			if (!messageArea.getText().trim().equals("")) {
 				// connection method call
 				ip = (messageArea.getText().trim());
+
 				userWindow.append(ip + "\n");
 				socket.socketConnect(ip);
 
