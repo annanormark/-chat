@@ -18,11 +18,11 @@ public class messagePacket{
     }
 
     public String getUser(){
-	return this.userName;
+	return this.UserName;
     }
 
     public Date getTimeStamp(){
-	return this.timeStamp;
+	return this.timestamp;
     }
     
 }
