@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.net.ConnectException;
@@ -9,7 +8,7 @@ import javax.swing.*;
 import javax.xml.bind.Marshaller.Listener;
 
 public class FrameDemo {
-  static String ip;
+	static String ip;
 
 	static JPanel master = new JPanel();
 	static JPanel south = new JPanel();
@@ -37,7 +36,7 @@ public class FrameDemo {
 	};
 
 	// public static void main(String[] args) {
-	// 	createAndShowGUI();
+	// createAndShowGUI();
 	// }
 
 	public static void createAndShowGUI() {
@@ -73,7 +72,7 @@ public class FrameDemo {
 		messageArea.getActionMap().put(actionKey, wrapper);
 
 		jframe.add(master);
-		//jframe.pack();
+		// jframe.pack();
 		windowActions();
 		jframe.setVisible(true);
 	}
@@ -101,11 +100,9 @@ public class FrameDemo {
 		if (!messageArea.getText().equals("")) {
 			if (!messageArea.getText().trim().equals("")) {
 				// connection method call
-        ip = (messageArea.getText().trim());
+				ip = (messageArea.getText().trim());
 				userWindow.append(ip + "\n");
-        socket.socketConnect(ip);
-        
-
+				socket.socketConnect(ip);
 
 			}
 			messageArea.setText("");
