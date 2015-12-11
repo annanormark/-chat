@@ -33,4 +33,7 @@ public class User {
 	public User[] getUsrList() {
 		return this.userList;
 	}
+    public void setMsgLog(MessageLog m){
+	this.messageLog = m;
+    }
 }
