@@ -3,10 +3,10 @@ import java.util.*;
 public class MessagePacket {
 
 	private String message;
-	private Date timeStamp;
+	private String timeStamp;
 	private String userName;
 
-	public MessagePacket(String msg, Date timestmp, String usrnme) {
+	public MessagePacket(String msg, String timestmp, String usrnme) {
 		this.message = msg;
 		this.timeStamp = timestmp;
 		this.userName = usrnme;
@@ -20,7 +20,7 @@ public class MessagePacket {
 		return this.userName;
 	}
 
-	public Date getTimeStamp() {
+	public String getTimeStamp() {
 		return this.timeStamp;
 	}
 
