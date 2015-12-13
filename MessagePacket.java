@@ -1,6 +1,4 @@
-import java.util.*;
-
-public class MessagePacket {
+public class MessagePacket implements java.io.Serializable {
 
 	private String message;
 	private String timeStamp;
