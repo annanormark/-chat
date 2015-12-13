@@ -1,10 +1,10 @@
 public class MessagePacket implements java.io.Serializable {
 
 	private String message;
-	private String timeStamp;
+	private Date timeStamp;
 	private String userName;
 
-	public MessagePacket(String msg, String timestmp, String usrnme) {
+	public MessagePacket(String msg, Date timestmp, String usrnme) {
 		this.message = msg;
 		this.timeStamp = timestmp;
 		this.userName = usrnme;
@@ -18,7 +18,7 @@ public class MessagePacket implements java.io.Serializable {
 		return this.userName;
 	}
 
-	public String getTimeStamp() {
+	public Date getTimeStamp() {
 		return this.timeStamp;
 	}
 

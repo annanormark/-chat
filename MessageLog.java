@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Date;
 
 public class MessageLog {
 	private MessagePacket[] messageList;
@@ -13,10 +14,10 @@ public class MessageLog {
 	public void insertMessage(MessagePacket msg) {
 		if (currentIndex + 1 >= size) {
 			currentIndex = 0;
-			messageList[currentIndex] = msg;
+			messageList[sortLog(msg)] = msg;
 		}
 		else{
-		messageList[currentIndex] = msg;
+			messageList[sortLog(msg)] = msg;
 		}
 		currentIndex += 1;
 	}
@@ -35,8 +36,34 @@ public class MessageLog {
 		return this.messageList[x].getUser();
 	}
 
-	public void sortLog() {
+	public Date getDate(int x) {
+		if (x < 0 || x >= size) {
+			return null;
+		}
+		return this.messageList[x].getTimeStamp();
+	}
 
+
+
+	public int sortLog(MessagePacket msg) {
+		int tempIndex = (currentIndex + 19) % 20;
+
+		for (int i = 0; i < 19; i++) {
+			System.out.println(messageList[tempIndex] != null);
+			if (messageList[tempIndex] != null) {
+				System.out.println(msg.getTimeStamp().after(getDate((tempIndex))));
+				if(msg.getTimeStamp().after(getDate((tempIndex)))) {
+					System.out.println("Ska avbryta");
+					break;
+				}
+				else{
+					System.out.println(i);
+					messageList[(tempIndex + 1) % 20] = messageList[tempIndex];
+					tempIndex = ((tempIndex + 19) % 20);
+				}
+			}
+		}
+		return tempIndex;
 	}
 
 	public String toString() {
@@ -45,7 +72,7 @@ public class MessageLog {
 
 		for (int i = 0; i < 20; i++) {
 			if (messageList[counter] != null) {
-			message = message + getUser(counter) + getMessage(counter) + "\n";
+			message = message + getUser(counter) + ": " + getMessage(counter) + "\n";
 		}
 			counter = (counter + 1) % 20;
 			
