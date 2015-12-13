@@ -43,6 +43,24 @@ public class MessageLog {
 		return this.messageList[x].getTimeStamp();
 	}
 
+	public boolean nameComp(MessagePacket p1, MessagePacket p2) {
+		String stringP1 = p1.getUser();
+		String stringP2 = p2.getUser();
+
+		stringP1 = stringP1.replace(".", "");
+		stringP2 = stringP2.replace(".", "");
+
+		int intP1 = Integer.parseInt(stringP1);
+		int intP2 = Integer.parseInt(stringP2);
+
+		if(intP1 > intP2){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 
 
 	public int sortLog(MessagePacket msg) {
@@ -50,7 +68,7 @@ public class MessageLog {
 
 		for (int i = 0; i < 19; i++) {
 			if (messageList[tempIndex] != null) {
-				if(msg.getTimeStamp().after(getDate((tempIndex)))) {
+				if(msg.getTimeStamp().after(getDate((tempIndex))) || (msg.getTimeStamp().equals(getDate((tempIndex))) && nameComp(msg, messageList[tempIndex]))) {
 					break;
 				}
 				else{

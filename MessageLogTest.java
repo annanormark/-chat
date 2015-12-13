@@ -28,15 +28,17 @@ public class MessageLogTest {
 		}
 		
 
-		MessagePacket med1 = new MessagePacket("Hej1", date1, "User1");
-		MessagePacket med2 = new MessagePacket("Hej2", date2, "User2");
-		MessagePacket med3 = new MessagePacket("Hej3", date3, "User3");
+		MessagePacket med1 = new MessagePacket("Hej1", date1, "192.168.1.52");
+		MessagePacket med2 = new MessagePacket("Hej2", date2, "192.168.1.52");
+		MessagePacket med3 = new MessagePacket("Hej3", date3, "192.168.1.52");
+		MessagePacket med4 = new MessagePacket("Hej4", date3, "192.168.1.53");
 
 		MessageLog log = new MessageLog();
 
 		log.insertMessage(med1);
 		log.insertMessage(med3);
 		log.insertMessage(med2);
+		log.insertMessage(med4);
 
 		System.out.println(log.toString());
 		System.out.println("Done");
