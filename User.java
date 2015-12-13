@@ -1,4 +1,6 @@
 import java.util.*;
+import java.net.*;
+import java.io.*;
 
 public class User {
 	private String name;
@@ -44,7 +46,8 @@ public class User {
 
     public String getMsg(){
 
-    }
+    	return "";
+    } 
 
     public static void socketConnect(String ip) {
 	String serverName = ip;
@@ -64,4 +67,4 @@ public class User {
 	    e.printStackTrace();
 	}
     }
-}§
+}

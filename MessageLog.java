@@ -28,6 +28,13 @@ public class MessageLog {
 		return this.messageList[x].getMessage();
 	}
 
+	public String getUser(int x) {
+		if (x < 0 || x >= size) {
+			return null;
+		}
+		return this.messageList[x].getUser();
+	}
+
 	public void sortLog() {
 
 	}
@@ -38,7 +45,7 @@ public class MessageLog {
 
 		for (int i = 0; i < 20; i++) {
 			if (messageList[counter] != null) {
-			message = message + getMessage(counter) + "\n";
+			message = message + getUser(counter) + getMessage(counter) + "\n";
 		}
 			counter = (counter + 1) % 20;
 			
