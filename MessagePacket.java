@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class MessagePacket implements java.io.Serializable {
 
 	private String message;
