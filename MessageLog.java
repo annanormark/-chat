@@ -49,21 +49,17 @@ public class MessageLog {
 		int tempIndex = (currentIndex + 19) % 20;
 
 		for (int i = 0; i < 19; i++) {
-			System.out.println(messageList[tempIndex] != null);
 			if (messageList[tempIndex] != null) {
-				System.out.println(msg.getTimeStamp().after(getDate((tempIndex))));
 				if(msg.getTimeStamp().after(getDate((tempIndex)))) {
-					System.out.println("Ska avbryta");
 					break;
 				}
 				else{
-					System.out.println(i);
 					messageList[(tempIndex + 1) % 20] = messageList[tempIndex];
 					tempIndex = ((tempIndex + 19) % 20);
 				}
 			}
 		}
-		return tempIndex;
+		return (tempIndex + 1) % 20;
 	}
 
 	public String toString() {
