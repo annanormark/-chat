@@ -107,9 +107,10 @@ public class FrameDemo {
 				// connection method call
 				ip = (messageArea.getText().trim());
 				//
-				// userWindow.append(ip + "\n");
+
 				// socket.socketConnect(ip);
 				main.cSocket = new ClientSocket(ip, 6066);
+				userWindow.append(main.cSocket.sock.getRemoteSocketAddress() + "\n");
 
 			}
 			messageArea.setText("");
