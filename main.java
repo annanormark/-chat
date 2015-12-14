@@ -8,6 +8,8 @@ public class main {
 	public static FrameDemo fDemo;
 	public static Thread cThread;
 	public static Thread sThread;
+	public static ObjectOutputStream sOutputStream;
+
 	
 	public static void main(String[] args) {
 		

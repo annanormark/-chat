@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -128,26 +129,23 @@ public class FrameDemo {
 
 				MessagePacket msg = new MessagePacket(message, date, main.cSocket.getLocalSocketAddress().toString());
 				sendMsg(msg);
-				
+
 			}
 			messageArea.setText("");
 		}
 	}
-	
-	
+
 	public static void sendMsg(MessagePacket msg) {
 		try {
-			ObjectOutputStream out = (ObjectOutputStream) main.cSocket.getOutputStream();
-			ObjectInputStream in = (ObjectInputStream) main.cSocket.getInputStream();
-			
-			System.out.println(msg.getMessage() + " " + out.toString());
-			out.writeObject(msg);
-			out.flush();
+			System.out.println(msg.getMessage() + " == the message111111!");
+			main.sOutputStream.writeObject(msg);
+			System.out.println(msg.getMessage() + " == the message22222222!");
+			main.sOutputStream.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		main.log.insertMessage(msg);
 	}
-	
+
 }

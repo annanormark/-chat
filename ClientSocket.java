@@ -2,13 +2,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ClientSocket extends Thread {
 	MessagePacket messagePack;
 	public Socket sock;
-	// Scanner in;
-	Scanner send;
 	ObjectOutputStream out;
 	ObjectInputStream in;
 
@@ -35,7 +32,8 @@ public class ClientSocket extends Thread {
 			try {
 				in = new ObjectInputStream(sock.getInputStream());
 				out = new ObjectOutputStream(sock.getOutputStream());
-				// out.flush();
+				out.flush();
+				main.sOutputStream = out;
 				pollInputStream();
 			} finally {
 				sock.close();
@@ -50,7 +48,7 @@ public class ClientSocket extends Thread {
 		while (true) {
 			try {
 				messagePack = (MessagePacket) in.readObject();
-			} catch (ClassNotFoundException | IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -61,8 +59,6 @@ public class ClientSocket extends Thread {
 
 	public void send(MessagePacket msg) {
 		try {
-			System.out.println(msg.getMessage() + " " + out.toString());
-			
 			out.writeObject(msg);
 			out.flush();
 		} catch (IOException e) {
