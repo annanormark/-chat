@@ -34,7 +34,7 @@ public class ClientSocket extends Thread {
 			try {
 				in = new ObjectInputStream(sock.getInputStream());
 				out = new ObjectOutputStream(sock.getOutputStream());
-				out.flush();
+//				out.flush();
 				pollInputStream();
 			} finally {
 				sock.close();
