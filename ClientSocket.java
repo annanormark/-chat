@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientSocket extends Thread {
@@ -11,12 +12,15 @@ public class ClientSocket extends Thread {
 
 	public ClientSocket(Socket sock) {
 		this.sock = sock;
+		System.out.println("är detta en loop?2.10");
 	}
 
 	public ClientSocket(String ip, int port) {
 		// TODO Auto-generated constructor stub
 		try {
-			this.sock = new Socket(ip, port);
+			System.out.println("är detta en loop?2.12::" + ip + " ::" + port);
+			this.sock = new Socket(InetAddress.getByName(ip), port);
+			System.out.println("är detta en loop?2.13");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,10 +37,10 @@ public class ClientSocket extends Thread {
 				in = new ObjectInputStream(sock.getInputStream());
 				out = new ObjectOutputStream(sock.getOutputStream());
 				out.flush();
-				main.sOutputStream = out;
+//				main.sOutputStream = out;
 				pollInputStream();
 			} finally {
-				sock.close();
+//				sock.close();
 			}
 		} catch (Exception e) {
 			System.out.println(e);

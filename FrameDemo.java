@@ -111,12 +111,16 @@ public class FrameDemo {
 				// connection method call
 				ip = (messageArea.getText().trim());
 				//
+				System.out.println("är detta en loop?1");
 
 				// socket.socketConnect(ip);
 				main.cThread = new ClientSocket(ip, 6066);
+				System.out.println("är detta en loop?1.5");
 				main.cThread.start();
+				System.out.println("är detta en loop?2");
 			}
 			messageArea.setText("");
+			System.out.println("är detta en loop?3");
 		}
 	}
 
@@ -137,7 +141,8 @@ public class FrameDemo {
 
 	public static void sendMsg(MessagePacket msg) {
 		try {
-			System.out.println(msg.getMessage() + " == the message111111!");
+			main.sOutputStream = new ObjectOutputStream(main.cSocket.getOutputStream());
+			System.out.println(msg.getMessage() + " == the message111111!" + main.sOutputStream.hashCode());
 			main.sOutputStream.writeObject(msg);
 			System.out.println(msg.getMessage() + " == the message22222222!");
 			main.sOutputStream.flush();
