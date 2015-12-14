@@ -101,10 +101,11 @@ public class FrameDemo {
 			if (!messageArea.getText().trim().equals("")) {
 				// connection method call
 				ip = (messageArea.getText().trim());
-
-				userWindow.append(ip + "\n");
-				socket.socketConnect(ip);
-
+//
+//				userWindow.append(ip + "\n");
+//				socket.socketConnect(ip);
+				main.cSocket = new ClientSocket(ip, 6066);
+				
 			}
 			messageArea.setText("");
 		}

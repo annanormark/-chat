@@ -24,12 +24,25 @@ public class servertest extends Thread {
 			try {
 				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
 				Socket server = serverSocket.accept();
-				System.out.println("Just connected to " + server.getRemoteSocketAddress());
-				DataInputStream in = new DataInputStream(server.getInputStream());
-				System.out.println(in.readUTF());
-				DataOutputStream out = new DataOutputStream(server.getOutputStream());
-				out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress() + "\nGoodbye!");
-				server.close();
+				ClientSocket cliSock = new ClientSocket(server);
+				cliSock.start();
+				
+				
+				try {
+					Thread t = new servertest(port);
+					t.start();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				
+				
+//				System.out.println("Just connected to " + server.getRemoteSocketAddress());
+//				DataInputStream in = new DataInputStream(server.getInputStream());
+//				System.out.println(in.readUTF());
+//				DataOutputStream out = new DataOutputStream(server.getOutputStream());
+//				out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress() + "\nGoodbye!");
+
 			} catch (SocketTimeoutException s) {
 				System.out.println("Socket timed out!");
 				break;

@@ -16,6 +16,16 @@ public class ClientSocket implements Runnable {
 	public ClientSocket(Socket sock) {
 		this.sock = sock;
 	}
+	public ClientSocket(String ip, int port) {
+		// TODO Auto-generated constructor stub
+	      try {
+			sock = new Socket(ip, port);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	public void run() {
@@ -34,19 +44,28 @@ public class ClientSocket implements Runnable {
 		}
 	}
 
-	private void pollInputStream() throws ClassNotFoundException, IOException {
+	private void pollInputStream() {
 		// TODO Auto-generated method stub
 		while (true) {
 
-			messagePack = (MessagePacket) in.readObject();
-			// String msg = in.nextLine();
+			try {
+				messagePack = (MessagePacket) in.readObject();
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String msg = messagePack.getMessage();
 		}
 	}
 
-	public void SEND(MessagePacket msg) {
-		out.println(A_Chat_Client_GUI.UserName + ": " + x);
-		OUT.flush();
-		A_Chat_Client_GUI.TF_Message.setText("");
+	public void send(MessagePacket msg) {
+		try {
+			out.writeObject(msg);
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		main.log.insertMessage(msg);
 	}
 }
