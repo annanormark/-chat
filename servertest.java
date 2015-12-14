@@ -24,9 +24,9 @@ public class servertest extends Thread {
 			try {
 				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
 				Socket server = serverSocket.accept();
-
-				main.cSocket = new ClientSocket(server);
-				main.cSocket.start();
+				main.cSocket = server;
+				main.sThread = new ClientSocket(server);
+				main.sThread.start();
 
 				// try {
 				// Thread t = new servertest(port);

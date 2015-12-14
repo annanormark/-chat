@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -109,9 +112,8 @@ public class FrameDemo {
 				//
 
 				// socket.socketConnect(ip);
-				main.cSocket = new ClientSocket(ip, 6066);
-				userWindow.append(main.cSocket.sock.getRemoteSocketAddress() + "\n");
-
+				main.cThread = new ClientSocket(ip, 6066);
+				main.cThread.start();
 			}
 			messageArea.setText("");
 		}
@@ -123,12 +125,29 @@ public class FrameDemo {
 			if (!message.trim().equals("")) {
 				// message sending method call
 				Date date = new Date();
-				Socket skd = main.cSocket.sock;
-				MessagePacket msg = new MessagePacket(message, date, skd.getLocalSocketAddress().toString());
-				main.cSocket.send(msg);
+
+				MessagePacket msg = new MessagePacket(message, date, main.cSocket.getLocalSocketAddress().toString());
+				sendMsg(msg);
 				
 			}
 			messageArea.setText("");
 		}
 	}
+	
+	
+	public static void sendMsg(MessagePacket msg) {
+		try {
+			ObjectOutputStream out = (ObjectOutputStream) main.cSocket.getOutputStream();
+			ObjectInputStream in = (ObjectInputStream) main.cSocket.getInputStream();
+			
+			System.out.println(msg.getMessage() + " " + out.toString());
+			out.writeObject(msg);
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		main.log.insertMessage(msg);
+	}
+	
 }

@@ -30,11 +30,12 @@ public class ClientSocket extends Thread {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		main.cSocket = this.sock;
 		try {
 			try {
 				in = new ObjectInputStream(sock.getInputStream());
 				out = new ObjectOutputStream(sock.getOutputStream());
-//				out.flush();
+				// out.flush();
 				pollInputStream();
 			} finally {
 				sock.close();
@@ -60,6 +61,8 @@ public class ClientSocket extends Thread {
 
 	public void send(MessagePacket msg) {
 		try {
+			System.out.println(msg.getMessage() + " " + out.toString());
+			
 			out.writeObject(msg);
 			out.flush();
 		} catch (IOException e) {
