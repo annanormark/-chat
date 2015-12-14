@@ -158,7 +158,11 @@ public class FrameDemo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(" == before insert!");
+
 		main.log.insertMessage(msg);
+		System.out.println(" == after insert");
+
 	}
 
 }

@@ -20,8 +20,10 @@ public class MessageLog {
 			messageList[sortLog(msg)] = msg;
 		}
 		currentIndex += 1;
-		main.fDemo.messageField.setText("");
-		main.fDemo.messageField.setText(this.messageList.toString());
+		main.fDemo.logWindow.setText("");
+		System.out.println(msg.getMessage() + " this.messagefield.tostring v");
+		main.fDemo.logWindow.setText(this.messageList.toString());
+		System.out.println("after set text");
 	}
 
 	public String getMessage(int x) {
