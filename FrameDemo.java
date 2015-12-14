@@ -118,6 +118,7 @@ public class FrameDemo {
 				System.out.println("är detta en loop?1.5");
 				main.cThread.start();
 				System.out.println("är detta en loop?2");
+				userWindow.append(messageArea.getText());
 				try {
 					main.sOutputStream = new ObjectOutputStream(main.cSocket.getOutputStream());
 					main.sOutputStream.flush();
