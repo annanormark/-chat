@@ -118,9 +118,17 @@ public class FrameDemo {
 				System.out.println("är detta en loop?1.5");
 				main.cThread.start();
 				System.out.println("är detta en loop?2");
+				try {
+					main.sOutputStream = new ObjectOutputStream(main.cSocket.getOutputStream());
+					main.sOutputStream.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			messageArea.setText("");
-			System.out.println("är detta en loop?3");
+			System.out.println(
+					"är detta en loop?3 = on port: " + main.cSocket.getPort() + " ::" + main.sOutputStream.hashCode());
 		}
 	}
 
@@ -141,7 +149,8 @@ public class FrameDemo {
 
 	public static void sendMsg(MessagePacket msg) {
 		try {
-			System.out.println(msg.getMessage() + " == the message111111!" + main.sOutputStream.hashCode());
+			System.out.println(msg.getMessage() + " == the message111111!");// +
+																			// main.sOutputStream.hashCode());
 			main.sOutputStream.writeObject(msg);
 			System.out.println(msg.getMessage() + " == the message22222222!");
 			main.sOutputStream.flush();

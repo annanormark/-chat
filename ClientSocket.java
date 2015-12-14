@@ -38,7 +38,8 @@ public class ClientSocket extends Thread {
 				// out = new ObjectOutputStream(sock.getOutputStream());
 				// out.flush();
 				// main.sOutputStream = out;
-				main.sOutputStream = new ObjectOutputStream(main.cSocket.getOutputStream());
+				// main.sOutputStream = new
+				// ObjectOutputStream(main.cSocket.getOutputStream());
 				pollInputStream();
 			} finally {
 				// sock.close();
