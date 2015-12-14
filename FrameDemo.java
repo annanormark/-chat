@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.net.ConnectException;
+import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,13 +21,17 @@ public class FrameDemo {
 	static JButton sendButton = new JButton("Send");
 	static JButton connectButton = new JButton("Connect");
 	static JTextArea messageArea = new JTextArea();
-	static JTextArea logWindow = new JTextArea();
+	public static JTextArea logWindow = new JTextArea();
 	static JScrollPane logWindowScroll = new JScrollPane(logWindow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	static JTextArea userWindow = new JTextArea(logWindow.getHeight(), 10);
 	static JScrollPane userWindowScroll = new JScrollPane(userWindow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	JTextArea messageField = new JTextArea(140, 2);
+
+	public FrameDemo() {
+		createAndShowGUI();
+	}
 
 	private static Action wrapper = new AbstractAction() {
 		@Override
@@ -101,24 +106,26 @@ public class FrameDemo {
 			if (!messageArea.getText().trim().equals("")) {
 				// connection method call
 				ip = (messageArea.getText().trim());
-//
-//				userWindow.append(ip + "\n");
-//				socket.socketConnect(ip);
+				//
+				// userWindow.append(ip + "\n");
+				// socket.socketConnect(ip);
 				main.cSocket = new ClientSocket(ip, 6066);
-				
+
 			}
 			messageArea.setText("");
 		}
 	}
 
 	public static void sendButtonAction() {
-		if (!messageArea.getText().equals("")) {
-			if (!messageArea.getText().trim().equals("")) {
+		String message = messageArea.getText();
+		if (!message.equals("")) {
+			if (!message.trim().equals("")) {
 				// message sending method call
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd h:mm:ss.S");
-				String formattedDate = sdf.format(date);
-				logWindow.append(formattedDate + ": " + messageArea.getText().trim() + "\n");
+				Socket skd = main.cSocket.sock;
+				MessagePacket msg = new MessagePacket(message, date, skd.getLocalSocketAddress().toString());
+				main.cSocket.send(msg);
+				
 			}
 			messageArea.setText("");
 		}

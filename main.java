@@ -5,6 +5,7 @@ import java.io.*;
 public class main {
 	public static MessageLog log = new MessageLog();
 	public static ClientSocket cSocket;
+	public static FrameDemo fDemo;
 	
 	public static void main(String[] args) {
 		
@@ -16,7 +17,7 @@ public class main {
 			e.printStackTrace();
 		}
 
-		FrameDemo.createAndShowGUI();
+		fDemo = new FrameDemo();
 
 	}
 }

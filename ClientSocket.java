@@ -1,13 +1,12 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientSocket implements Runnable {
+public class ClientSocket extends Thread {
 	MessagePacket messagePack;
-	Socket sock;
+	public Socket sock;
 	// Scanner in;
 	Scanner send;
 	ObjectOutputStream out;
@@ -16,10 +15,11 @@ public class ClientSocket implements Runnable {
 	public ClientSocket(Socket sock) {
 		this.sock = sock;
 	}
+
 	public ClientSocket(String ip, int port) {
 		// TODO Auto-generated constructor stub
-	      try {
-			sock = new Socket(ip, port);
+		try {
+			this.sock = new Socket(ip, port);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,14 +47,14 @@ public class ClientSocket implements Runnable {
 	private void pollInputStream() {
 		// TODO Auto-generated method stub
 		while (true) {
-
 			try {
 				messagePack = (MessagePacket) in.readObject();
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String msg = messagePack.getMessage();
+			// String msg = messagePack.getMessage();
+			main.log.insertMessage(messagePack);
 		}
 	}
 

@@ -16,7 +16,7 @@ public class servertest extends Thread {
 
 	public servertest(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
-		serverSocket.setSoTimeout(300000);
+//		serverSocket.setSoTimeout(300000);
 	}
 
 	public void run() {
@@ -24,16 +24,17 @@ public class servertest extends Thread {
 			try {
 				System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
 				Socket server = serverSocket.accept();
-				ClientSocket cliSock = new ClientSocket(server);
+				Thread cliSock = new ClientSocket(server);
 				cliSock.start();
 				
 				
-				try {
-					Thread t = new servertest(port);
-					t.start();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				
+//				try {
+//					Thread t = new servertest(port);
+//					t.start();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
 
 				
 				
