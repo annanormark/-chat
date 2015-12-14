@@ -22,7 +22,7 @@ public class MessageLog {
 		currentIndex += 1;
 		main.fDemo.logWindow.setText("");
 		System.out.println(msg.getMessage() + " this.messagefield.tostring v");
-		main.fDemo.logWindow.setText(this.messageList.toString());
+		main.fDemo.logWindow.setText(this.toString());
 		System.out.println("after set text");
 	}
 
