@@ -141,7 +141,6 @@ public class FrameDemo {
 
 	public static void sendMsg(MessagePacket msg) {
 		try {
-			main.sOutputStream = new ObjectOutputStream(main.cSocket.getOutputStream());
 			System.out.println(msg.getMessage() + " == the message111111!" + main.sOutputStream.hashCode());
 			main.sOutputStream.writeObject(msg);
 			System.out.println(msg.getMessage() + " == the message22222222!");
