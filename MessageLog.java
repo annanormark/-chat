@@ -72,7 +72,10 @@ public class MessageLog {
 
 		for (int i = 0; i < 19; i++) {
 			if (messageList[tempIndex] != null) {
-				if(msg.getTimeStamp().after(getDate((tempIndex))) || (msg.getTimeStamp().equals(getDate((tempIndex))) && nameComp(msg, messageList[tempIndex]))) {
+				if(msg.getTimeStamp().after(getDate(tempIndex))) {
+					break;
+				}
+				else if(msg.getTimeStamp().equals(getDate((tempIndex))) && nameComp(msg, messageList[tempIndex]){
 					break;
 				}
 				else{
