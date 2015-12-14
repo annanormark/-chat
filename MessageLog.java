@@ -75,7 +75,7 @@ public class MessageLog {
 				if(msg.getTimeStamp().after(getDate(tempIndex))) {
 					break;
 				}
-				else if(msg.getTimeStamp().equals(getDate((tempIndex))) && nameComp(msg, messageList[tempIndex]){
+				else if(msg.getTimeStamp().equals(getDate((tempIndex))) && nameComp(msg, messageList[tempIndex])){
 					break;
 				}
 				else{
